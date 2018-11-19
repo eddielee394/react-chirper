@@ -23,7 +23,7 @@ class App extends Component {
 }
 
 /**
- * Map state to the store
+ * Map state to props from store
  * @param authUser
  * @return {{loading: boolean}}
  */

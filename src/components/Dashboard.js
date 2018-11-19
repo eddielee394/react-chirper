@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Tweet from "./Tweet";
 
 class Dashboard extends Component {
   render() {
+    const { tweetIds } = this.props;
     return (
       <div className="dashboard--container">
         <h3>timeline</h3>
         <ul className="dashboard-list">
-          {this.props.tweetIds.map(id => (
+          {tweetIds.map(id => (
             <li key={id}>
-              <div>Tweet Id: {id}</div>
+              <Tweet id={id} />
             </li>
           ))}
         </ul>
@@ -19,7 +21,7 @@ class Dashboard extends Component {
 }
 
 /**
- * Map tweets state to store
+ * Map state to props from store
  * @param tweets
  * @return {{tweetIds: string[]}}
  */
