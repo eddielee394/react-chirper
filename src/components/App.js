@@ -3,6 +3,7 @@ import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
 import LoadingBar from "react-redux-loading-bar";
+import { Slide, ToastContainer } from "react-toastify";
 
 class App extends Component {
   componentDidMount() {
@@ -19,6 +20,11 @@ class App extends Component {
       <div className="main">
         <LoadingBar />
         <div className="container">{dashboard}</div>
+        <ToastContainer
+          transition={Slide}
+          newestOnTop={true}
+          hideProgressBar={true}
+        />
       </div>
     );
   }
