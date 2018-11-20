@@ -15,7 +15,7 @@ class Tweet extends Component {
   };
 
   render() {
-    const { tweet } = this.props;
+    const { tweet, authUser } = this.props;
     const { name, avatar, timestamp, text, parent } = tweet;
 
     //if tweet doesn't exist, only return notification
@@ -45,7 +45,7 @@ class Tweet extends Component {
             {replyingToBtn}
             <p>{text}</p>
           </div>
-          <IconsList tweet={tweet} />
+          <IconsList tweet={tweet} authUser={authUser} />
         </div>
       </div>
     );

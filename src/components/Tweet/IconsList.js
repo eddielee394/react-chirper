@@ -1,16 +1,25 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { IconContext } from "react-icons";
-
 import {
   TiArrowBackOutline,
   TiHeartOutline,
   TiHeartFullOutline
 } from "react-icons/ti";
+import { handleToggleTweet } from "../../actions/tweets";
 
 class IconsList extends Component {
+  /**
+   * Handle Like event
+   * @param event
+   */
   handleLike = event => {
     event.preventDefault();
-    //TODO: add like functionality
+    const { dispatch, tweet, authUser } = this.props;
+    //Call the ToggleTweet method from the store
+    dispatch(
+      handleToggleTweet({ id: tweet.id, hasLiked: tweet.hasLiked, authUser })
+    );
   };
 
   render() {
@@ -44,4 +53,4 @@ class IconsList extends Component {
   }
 }
 
-export default IconsList;
+export default connect()(IconsList);
