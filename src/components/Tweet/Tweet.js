@@ -1,20 +1,52 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { formatTweet } from "../utils/helpers";
+import { formatTweet } from "../../utils/helpers";
+import IconsList from "./IconsList";
 
 class Tweet extends Component {
+  /**
+   * Redirect to Parent Tweet
+   * @param event
+   * @param id
+   */
+  toParent = (event, id) => {
+    event.preventDefault();
+    //TODO: redirect to parent tweet
+  };
+
   render() {
     const { tweet } = this.props;
+    const { name, avatar, timestamp, text, parent } = tweet;
+
     //if tweet doesn't exist, only return notification
     if (tweet === null) {
       return <p>This tweet doesn't exist.</p>;
     }
 
+    //if parent exists, display replyToBtn
+    const replyingToBtn = parent && (
+      <span>
+        <button
+          className="replying-to font-weight-light"
+          onClick={e => this.toParent(e, parent.id)}
+        >
+          <small>Replying to @{parent.author}</small>
+        </button>
+      </span>
+    );
+
     return (
-      <div>
-        <div>Tweet Id: {tweet.id}</div>
-        <div className="">Tweet name: {tweet.name}</div>
-        <div className="">Tweet text: {tweet.text}</div>
+      <div className="tweet">
+        <img className="avatar" src={avatar} />
+        <div className="tweet-info">
+          <div className="tweet-body d-flex flex-column">
+            <span>{name}</span>
+            <span>{timestamp}</span>
+            {replyingToBtn}
+            <p>{text}</p>
+          </div>
+          <IconsList tweet={tweet} />
+        </div>
       </div>
     );
   }

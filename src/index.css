@@ -125,6 +125,10 @@ li {
   color: #00b5d6;
   cursor: pointer;
 }
+
+.tweet-icon-liked {
+  color: #e0245e
+}
 .replying-to {
   border: none;
   background: transparent;
