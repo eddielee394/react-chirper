@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
+import LoadingBar from "react-redux-loading-bar";
 
 class App extends Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class App extends Component {
 
     return (
       <div className="main">
+        <LoadingBar />
         <div className="container">{dashboard}</div>
       </div>
     );

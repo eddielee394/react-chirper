@@ -2,7 +2,7 @@ import { getInitialData } from "../utils/api";
 import { receiveUsers } from "./users";
 import { receiveTweets } from "./tweets";
 import { setAuthUser } from "./authUser";
-
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 //Temp auth id
 const AUTH_ID = "tylermcginnis";
 
@@ -11,8 +11,10 @@ const AUTH_ID = "tylermcginnis";
  * @return {function(*): (void|PromiseLike<T | never>|Promise<T | never>)}
  */
 export const handleInitialData = () => dispatch => {
-  //redux thunk pattern to make async request
+  //show loading bar
+  dispatch(showLoading());
   return (
+    //redux thunk pattern to make async request
     getInitialData()
       //returns promise with users & tweets properties
       .then(({ users, tweets }) => {
@@ -20,6 +22,7 @@ export const handleInitialData = () => dispatch => {
         dispatch(receiveUsers(users));
         dispatch(receiveTweets(tweets));
         dispatch(setAuthUser(AUTH_ID));
+        dispatch(hideLoading());
       })
   );
 };
