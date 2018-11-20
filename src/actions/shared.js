@@ -31,6 +31,7 @@ export const handleInitialData = () => dispatch => {
 
 /**
  * Toast notification
+ * TODO: consider refactoring with action, reducer & middleware support
  * @param content {string} Text content the notification should display
  * @param type {string} The type of notification.  Accepts: "default", "success", "info", "warning", "error"
  * @param className {string} Container css class name
