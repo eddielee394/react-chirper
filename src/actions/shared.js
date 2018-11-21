@@ -3,7 +3,6 @@ import { receiveUsers } from "./users";
 import { receiveTweets } from "./tweets";
 import { setAuthUser } from "./authUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { toast } from "react-toastify";
 
 //Temp auth id
 const AUTH_ID = "tylermcginnis";
@@ -27,28 +26,4 @@ export const handleInitialData = () => dispatch => {
         dispatch(hideLoading());
       })
   );
-};
-
-/**
- * Toast notification
- * TODO: consider refactoring with action, reducer & middleware support
- * @param content {string} Text content the notification should display
- * @param type {string} The type of notification.  Accepts: "default", "success", "info", "warning", "error"
- * @param className {string} Container css class name
- * @param progressClassName {string} Progress bar css class name
- * @param autoClose {number} Time delay in ms before the toast closes
- */
-export const handleNotification = (
-  content,
-  type = "default",
-  className = "alert-primary",
-  progressClassName = "bg-primary",
-  autoClose = 1500
-) => {
-  toast(content, {
-    type,
-    className: `alert ${className}`,
-    progressClassName,
-    autoClose
-  });
 };

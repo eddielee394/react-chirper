@@ -1,6 +1,7 @@
 import { saveLikeToggle, saveTweet } from "../utils/api";
 import { handleNotification } from "./shared";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { toast } from "react-toastify";
 
 /**
  * Receive Tweets Action Type
@@ -69,11 +70,10 @@ export const handleToggleTweet = info => dispatch => {
   return saveLikeToggle(info).catch(event => {
     console.warn("Error in handleToggleTweet: ", event);
     dispatch(toggleTweet(info));
-    handleNotification(
-      "There was an error liking the tweet.  Try again.",
-      "error",
-      "alert-danger"
-    );
+    toast("There was an error liking the tweet.  Try again.", {
+      type: "error",
+      className: "alert-danger"
+    });
   });
 };
 
@@ -82,9 +82,13 @@ export const handleToggleTweet = info => dispatch => {
  * @summary action creator
  * @param text
  * @param replyingTo
+ * @param callback
  * @return {function(*, *): Promise<T | never>}
  */
-export const handleAddTweet = (text, replyingTo) => (dispatch, getState) => {
+export const handleAddTweet = (text, replyingTo, callback = null) => (
+  dispatch,
+  getState
+) => {
   const { authUser } = getState();
   dispatch(showLoading());
   return saveTweet({
@@ -95,18 +99,17 @@ export const handleAddTweet = (text, replyingTo) => (dispatch, getState) => {
     .then(tweet => dispatch(addTweet(tweet)))
     .then(() => {
       dispatch(hideLoading());
-      handleNotification(
-        "Your tweet was successfully added.",
-        "success",
-        "alert-success"
-      );
+      toast("Your tweet was successfully added", {
+        type: "success",
+        className: "alert-success",
+        onClose: callback
+      });
     })
     .catch(event => {
       console.warn("Error in handleAddTweet: ", event);
-      handleNotification(
-        "There was an error adding the tweet.  Try again.",
-        "error",
-        "alert-danger"
-      );
+      toast("There was an error adding the tweet.  Try again.", {
+        type: "error",
+        className: "alert-danger"
+      });
     });
 };
