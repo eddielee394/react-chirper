@@ -3,7 +3,7 @@ Super simple twitter-like demo application built with ReactJS.
 
 ![](docs/screenshots/react_chirper.gif)
 
-**Demo:** https://www.github.io/eddielee394/react-chirper
+**Demo:** https://eddielee394.github.io/react-chirper
 
 ## Codebase
 - React 16
