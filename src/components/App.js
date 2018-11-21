@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoadingBar from "react-redux-loading-bar";
 import { Slide, ToastContainer } from "react-toastify";
+import PropTypes from "prop-types";
 
 //Custom components
 import Loader from "./Loader/Loader";
@@ -65,5 +66,10 @@ function mapStateToProps({ authUser }) {
     loading: authUser === null
   };
 }
+//Override react-router prop types to prevent prop-type errors due to current version. Should be fixed in v4.4
+// See: https://github.com/ReactTraining/react-router/pull/5889
+Route.propTypes = {
+  path: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+};
 
 export default connect(mapStateToProps)(App);
