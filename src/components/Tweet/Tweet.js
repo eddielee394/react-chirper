@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatTweet } from "../../utils/helpers";
 import IconsList from "./IconsList";
+import { Link, withRouter } from "react-router-dom";
 
 class Tweet extends Component {
   /**
@@ -11,7 +12,7 @@ class Tweet extends Component {
    */
   toParent = (event, id) => {
     event.preventDefault();
-    //TODO: redirect to parent tweet
+    this.props.history.push(`/tweet/${id}`);
   };
 
   render() {
@@ -22,7 +23,7 @@ class Tweet extends Component {
       return <p>This tweet doesn't exist.</p>;
     }
 
-    const { name, avatar, timestamp, text, parent } = tweet;
+    const { id, name, avatar, timestamp, text, parent } = tweet;
 
     //if parent exists, display replyToBtn
     const replyingToBtn = parent && (
@@ -37,7 +38,7 @@ class Tweet extends Component {
     );
 
     return (
-      <div className="tweet">
+      <Link to={`/tweet/${id}`} className="tweet">
         <img className="avatar" src={avatar} />
         <div className="tweet-info">
           <div className="tweet-body d-flex flex-column">
@@ -48,7 +49,7 @@ class Tweet extends Component {
           </div>
           <IconsList tweet={tweet} authUser={authUser} />
         </div>
-      </div>
+      </Link>
     );
   }
 }
@@ -81,4 +82,4 @@ function mapStateToProps({ authUser, users, tweets }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(Tweet);
+export default withRouter(connect(mapStateToProps)(Tweet));

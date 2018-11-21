@@ -39,9 +39,7 @@ class IconsList extends Component {
     return (
       <div className="tweet-icons">
         <IconContext.Provider value={{ className: "tweet-icon" }}>
-          <a href="#">
-            <TiArrowBackOutline />
-          </a>
+          <TiArrowBackOutline />
           <span>{replies}</span>
           <button className="heart-button" onClick={this.handleLike}>
             {likeIcon}
