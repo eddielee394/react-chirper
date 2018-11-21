@@ -40,7 +40,7 @@ class App extends Component {
             </div>
           ) : (
             <div className="container">
-              <Route exact path="/" component={Dashboard} />
+              <Route exact path={["/", "/dashboard"]} component={Dashboard} />
               <Route exact path="/new" component={NewTweet} />
               <Route exact path="/tweet/:id" component={TweetPage} />
             </div>
@@ -49,6 +49,7 @@ class App extends Component {
             transition={Slide}
             newestOnTop={true}
             hideProgressBar={true}
+            autoClose={1500}
           />
         </div>
       </Router>
