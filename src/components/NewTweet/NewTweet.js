@@ -43,13 +43,11 @@ class NewTweet extends Component {
     //TODO: redirect to home view when submitted
 
     return (
-      <div className="row justify-content-center">
-        <div className="col-12 col-lg-8">
+      <div className="new-tweet-container">
           <div className="title-container text-center">
             <h3>Compose new tweet</h3>
           </div>
-        </div>
-        <div className="col-12 col-lg-8">
+        <div className="new-tweet-form-container">
           <form className="new-tweet" onSubmit={this.handleSubmit}>
             <textarea
               className="textarea"

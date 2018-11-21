@@ -6,15 +6,18 @@ class Dashboard extends Component {
   render() {
     const { tweetIds } = this.props;
     return (
-      <div className="dashboard--container">
-        <h3>timeline</h3>
-        <ul className="dashboard-list">
-          {tweetIds.map(id => (
-            <li key={id}>
-              <Tweet id={id} />
-            </li>
-          ))}
-        </ul>
+      <div className="row">
+        <div className="col-12">
+          <div className="dashboard--container">
+            <ul className="dashboard-list">
+              {tweetIds.map(id => (
+                <li key={id}>
+                  <Tweet id={id} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

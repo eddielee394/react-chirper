@@ -15,8 +15,8 @@ class TweetPage extends Component {
             <Tweet id={id} />
           </div>
         </div>
-        <div className="row">
-          <div className="col-12 my-2">
+        <div className="row justify-content-center">
+          <div className="col-12 col-lg-8">
             <NewTweet id={id} />
           </div>
         </div>
