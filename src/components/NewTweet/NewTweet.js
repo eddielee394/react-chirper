@@ -4,7 +4,8 @@ import { handleAddTweet } from "../../actions/tweets";
 
 class NewTweet extends Component {
   state = {
-    text: ""
+    text: "",
+    redirectOnSubmit: false
   };
 
   /**
@@ -26,11 +27,34 @@ class NewTweet extends Component {
     event.preventDefault();
     const { text } = this.state;
     const { dispatch, id } = this.props;
-    //TODO: get id from route path
-    dispatch(handleAddTweet(text, id));
-    this.setState(() => ({
-      text: ""
-    }));
+    //dispatch the handleAddTweet action
+    dispatch(handleAddTweet(text, id, this.handleRedirectOnSubmit));
+
+    //reset the text state and if id doesn't exist, then update the redirectOnSubmit state to true
+    this.setState({
+      text: "",
+      redirectOnSubmit: !id
+    });
+  };
+
+  /**
+   * Handle's on Submit redirect
+   */
+  handleRedirectOnSubmit = () => {
+    const { redirectOnSubmit } = this.state;
+
+    if (redirectOnSubmit === true) {
+      this.setRedirectOnSubmit("/dashboard");
+    }
+  };
+
+  /**
+   * Sets the path for redirectOnSubmit
+   * @param urlPath
+   * @return {*}
+   */
+  setRedirectOnSubmit = urlPath => {
+    return this.props.history.push(urlPath);
   };
 
   render() {
@@ -40,13 +64,11 @@ class NewTweet extends Component {
       <div className="tweet-length">{tweetLeft}</div>
     );
 
-    //TODO: redirect to home view when submitted
-
     return (
       <div className="new-tweet-container">
-          <div className="title-container text-center">
-            <h3>Compose new tweet</h3>
-          </div>
+        <div className="title-container text-center">
+          <h3>Compose new tweet</h3>
+        </div>
         <div className="new-tweet-form-container">
           <form className="new-tweet" onSubmit={this.handleSubmit}>
             <textarea
