@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
 import LoadingBar from "react-redux-loading-bar";
 import { Slide, ToastContainer } from "react-toastify";
+import TweetPage from "./TweetPage";
 
 class App extends Component {
   componentDidMount() {
@@ -19,7 +20,10 @@ class App extends Component {
     return (
       <div className="main">
         <LoadingBar />
-        <div className="container">{dashboard}</div>
+        <div className="container">
+          {dashboard}
+          <TweetPage match={{ params: { id: "2mb6re13q842wu8n106bhk" } }} />
+        </div>
         <ToastContainer
           transition={Slide}
           newestOnTop={true}

@@ -16,12 +16,13 @@ class Tweet extends Component {
 
   render() {
     const { tweet, authUser } = this.props;
-    const { name, avatar, timestamp, text, parent } = tweet;
 
     //if tweet doesn't exist, only return notification
     if (tweet === null) {
       return <p>This tweet doesn't exist.</p>;
     }
+
+    const { name, avatar, timestamp, text, parent } = tweet;
 
     //if parent exists, display replyToBtn
     const replyingToBtn = parent && (
