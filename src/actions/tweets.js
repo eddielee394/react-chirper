@@ -1,5 +1,4 @@
 import { saveLikeToggle, saveTweet } from "../utils/api";
-import { handleNotification } from "./shared";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { toast } from "react-toastify";
 

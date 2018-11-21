@@ -5,7 +5,7 @@ import { setAuthUser } from "./authUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 //Temp auth id
-const AUTH_ID = "tylermcginnis";
+const AUTH_ID = "joeschmoe";
 
 /**
  * Loads the initial data
